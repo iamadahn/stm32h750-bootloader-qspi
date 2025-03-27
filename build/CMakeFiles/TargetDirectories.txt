@@ -1,0 +1,3 @@
+/home/adahn/projects/stm32h750-iamboot/build/CMakeFiles/bootloader.elf.dir
+/home/adahn/projects/stm32h750-iamboot/build/CMakeFiles/edit_cache.dir
+/home/adahn/projects/stm32h750-iamboot/build/CMakeFiles/rebuild_cache.dir
