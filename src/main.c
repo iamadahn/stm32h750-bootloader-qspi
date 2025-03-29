@@ -2,11 +2,12 @@
 #include "usart.h"
 #include "stm32h7xx_hal.h"
 
+static UART_HandleTypeDef serial;
+
 int main(void)
 {
     bsp_init();
 
-    UART_HandleTypeDef serial = {0};
     usart_init(&serial, USART1);
 
     while (1) {
@@ -15,3 +16,12 @@ int main(void)
     }
 }
 
+void SysTick_Handler(void)
+{
+    HAL_IncTick();
+}
+
+void USART1_IRQHandler(void)
+{
+    HAL_UART_IRQHandler(&serial);
+}

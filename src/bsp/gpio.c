@@ -49,5 +49,8 @@ static void gpio_usart1_init(void)
     gpio_usart1_config.Speed = GPIO_SPEED_FREQ_LOW;
     gpio_usart1_config.Alternate = GPIO_AF4_USART1;
     HAL_GPIO_Init(GPIOB, &gpio_usart1_config);
+
+    HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USART1_IRQn);
 }
 
