@@ -1,6 +1,4 @@
 cmake_minimum_required(VERSION 3.17)
-set(CMAKE_SYSTEM_NAME Generic)
-set(CMAKE_SYSTEM_VERSION 1)
 
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
 set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
@@ -36,7 +34,8 @@ include_directories(
 # Add you source file
 file(GLOB SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/*.s"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/bsp/*.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/bsp/*.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/bsp/hal/src/*.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/sys/*.c"
