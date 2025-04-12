@@ -21,10 +21,11 @@ void Flash::reset(void)
     if (HAL_QSPI_Command(qspi_dev, &cmd, 100) != HAL_OK) {
         while (true);
     }
-    wait();
-
+    
+    while(!wait());
+    
     cmd.Instruction = 0x99;
-    if (HAL_QSPI_Command(qspi_dev, &cmd, 100) != HAL_OK) {
+    if (HAL_QSPI_Command(qspi_dev, &cmd, 1000) != HAL_OK) {
         while (true);
     }
 }
@@ -64,7 +65,7 @@ void Flash::disable_quad_mode(void)
 {
     QSPI_CommandTypeDef cmd = {0};
 
-    cmd.InstructionMode = instruction_mode;
+    cmd.InstructionMode = QSPI_INSTRUCTION_4_LINES;
     cmd.Instruction     = 0xFF;
 
     HAL_QSPI_Command(qspi_dev, &cmd, 100);
@@ -93,7 +94,7 @@ void Flash::enable_quad_mode(void)
     cmd.Instruction     = 0x38;
     cmd.InstructionMode = instruction_mode;
     cmd.AddressSize     = QSPI_ADDRESS_24_BITS;
-    if (HAL_QSPI_Command(qspi_dev, &cmd, 100) != HAL_OK) {
+    while (HAL_QSPI_Command(qspi_dev, &cmd, 100) != HAL_OK) {
         while (true);
     }
 
