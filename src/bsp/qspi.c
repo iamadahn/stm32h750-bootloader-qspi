@@ -15,7 +15,7 @@ void qspi_init(QSPI_HandleTypeDef *qspi)
     qspi->Instance = QUADSPI;
     qspi->Init.ClockPrescaler = 2;
     qspi->Init.FifoThreshold = 4;
-    qspi->Init.SampleShifting = QSPI_SAMPLE_SHIFTING_NONE;
+    qspi->Init.SampleShifting = QSPI_SAMPLE_SHIFTING_HALFCYCLE;
     qspi->Init.FlashSize = 1;
     qspi->Init.ChipSelectHighTime = QSPI_CS_HIGH_TIME_5_CYCLE;
     qspi->Init.ClockMode = QSPI_CLOCK_MODE_0;
