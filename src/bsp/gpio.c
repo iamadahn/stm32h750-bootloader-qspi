@@ -60,28 +60,28 @@ static void gpio_qspi_init(void)
     gpio_qspi_config.Pin = GPIO_PIN_2;
     gpio_qspi_config.Mode = GPIO_MODE_AF_PP;
     gpio_qspi_config.Pull = GPIO_NOPULL;
-    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_LOW;
+    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     gpio_qspi_config.Alternate = GPIO_AF9_QUADSPI;
     HAL_GPIO_Init(GPIOE, &gpio_qspi_config);
 
     gpio_qspi_config.Pin = GPIO_PIN_2;
     gpio_qspi_config.Mode = GPIO_MODE_AF_PP;
     gpio_qspi_config.Pull = GPIO_NOPULL;
-    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_LOW;
+    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     gpio_qspi_config.Alternate = GPIO_AF9_QUADSPI;
     HAL_GPIO_Init(GPIOB, &gpio_qspi_config);
 
     gpio_qspi_config.Pin = GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13;
     gpio_qspi_config.Mode = GPIO_MODE_AF_PP;
     gpio_qspi_config.Pull = GPIO_NOPULL;
-    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_LOW;
+    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     gpio_qspi_config.Alternate = GPIO_AF9_QUADSPI;
     HAL_GPIO_Init(GPIOD, &gpio_qspi_config);
 
     gpio_qspi_config.Pin = GPIO_PIN_6;
     gpio_qspi_config.Mode = GPIO_MODE_AF_PP;
     gpio_qspi_config.Pull = GPIO_NOPULL;
-    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_LOW;
+    gpio_qspi_config.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
     gpio_qspi_config.Alternate = GPIO_AF10_QUADSPI;
     HAL_GPIO_Init(GPIOB, &gpio_qspi_config);
 }
