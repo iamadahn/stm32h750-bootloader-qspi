@@ -12,9 +12,9 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 # Add you project name
 project(bootloader C CXX ASM)
 
-add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
+add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork -mfloat-abi=hard -mfpu=fpv5-d16)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
-add_compile_options(-lc -lm -lnosys -specs=nano.specs)
+add_compile_options(-specs=nosys.specs -lc -lm -lnosys)
 add_compile_options(-Wall)
 
 add_compile_options(-O0 -g)
@@ -44,9 +44,9 @@ file(GLOB LINKER_SCRIPT "*.ld")
 message(STATUS "Found linker script - ${LINKER_SCRIPT}")
 
 # this options for C++
-add_link_options(-specs=nano.specs -lc -lm)
+add_link_options(-specs=nosys.specs -lc -lm -lnosys)
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
-add_link_options(-mcpu=cortex-m3 -mthumb -mthumb-interwork)
+add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork -mfloat-abi=hard -mfpu=fpv5-d16)
 add_link_options(-T ${LINKER_SCRIPT})
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
