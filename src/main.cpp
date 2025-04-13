@@ -4,8 +4,8 @@
 #include "stm32h7xx_hal.h"
 #include "drivers/w25q/w25q.h"
 
-#define VECT_TAB_OFFSET      0x00000000UL
-#define APPLICATION_ADDRESS  0x90000000UL
+#define VECT_TAB_OFFSET      0x00000000
+#define APPLICATION_ADDRESS  0x90000000
 
 typedef  void (*func_ptr)(void);
 func_ptr jump_to_app;
@@ -21,8 +21,13 @@ int main(void)
 
     qspi_init(&qspi);
 
-    W25Q::Flash flash = W25Q::Flash(&qspi);
+    auto flash = W25Q::Flash(&qspi);
     flash.init();
+
+    for (uint8_t i = 0; i < 10; i++) {
+        HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_3);
+        HAL_Delay(100);
+    }
 
     flash.enable_memory_map();
 
@@ -30,13 +35,14 @@ int main(void)
 	SysTick->LOAD = 0;
 	SysTick->VAL = 0;
 
-	for(uint8_t i = 0; i < 8; i++) {
+	for(uint8_t i = 0; i < 8; i++)
+	{
 		NVIC->ICER[i]=0xFFFFFFFF;
 		NVIC->ICPR[i]=0xFFFFFFFF;
 	}
 
-	__disable_irq();
 	__set_CONTROL(0);
+	__disable_irq();
 	__set_PRIMASK(1);
 
 	HAL_GPIO_DeInit(GPIOE, GPIO_PIN_3);

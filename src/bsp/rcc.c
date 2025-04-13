@@ -20,7 +20,6 @@ void rcc_init(void)
     osc_config.OscillatorType = RCC_OSCILLATORTYPE_HSE | RCC_OSCILLATORTYPE_LSE;
     osc_config.HSEState = RCC_HSE_ON;
     osc_config.LSEState = RCC_LSE_ON;
-
     osc_config.PLL.PLLState = RCC_PLL_ON;
     osc_config.PLL.PLLSource = RCC_PLLSOURCE_HSE;
     osc_config.PLL.PLLM = 5;
