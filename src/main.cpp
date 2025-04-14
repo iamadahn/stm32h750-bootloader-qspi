@@ -57,7 +57,6 @@ int main(void)
     }
 }
 
-
 extern "C" void SysTick_Handler(void)
 {
     HAL_IncTick();
