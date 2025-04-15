@@ -31,25 +31,25 @@ int main(void)
 
     flash.enable_memory_map();
 
-	SysTick->CTRL = 0;
-	SysTick->LOAD = 0;
-	SysTick->VAL = 0;
+    SysTick->CTRL = 0;
+    SysTick->LOAD = 0;
+    SysTick->VAL = 0;
 
-	for(uint8_t i = 0; i < 8; i++)
-	{
-		NVIC->ICER[i]=0xFFFFFFFF;
-		NVIC->ICPR[i]=0xFFFFFFFF;
-	}
+    for(uint8_t i = 0; i < 8; i++)
+    {
+        NVIC->ICER[i]=0xFFFFFFFF;
+        NVIC->ICPR[i]=0xFFFFFFFF;
+    }
 
-	__set_CONTROL(0);
-	__disable_irq();
-	__set_PRIMASK(1);
+    __set_CONTROL(0);
+    __disable_irq();
+    __set_PRIMASK(1);
 
-	HAL_GPIO_DeInit(GPIOE, GPIO_PIN_3);
+    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_3);
 
-	jump_to_app = (func_ptr) (*(__IO uint32_t*)(APPLICATION_ADDRESS + 4));
-	__set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
-	jump_to_app();
+    jump_to_app = (func_ptr) (*(__IO uint32_t*)(APPLICATION_ADDRESS + 4));
+    __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
+    jump_to_app();
 
     while (true) {
         HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_3);
