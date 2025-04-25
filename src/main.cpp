@@ -49,6 +49,7 @@ int main(void)
 
     jump_to_app = (func_ptr) (*(__IO uint32_t*)(APPLICATION_ADDRESS + 4));
     __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
+    __enable_irq();
     jump_to_app();
 
     while (true) {
