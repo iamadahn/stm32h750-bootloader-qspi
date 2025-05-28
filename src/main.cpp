@@ -31,6 +31,10 @@ int main(void)
 
     flash.enable_memory_map();
 
+    __set_CONTROL(0);
+    __disable_irq();
+    __set_PRIMASK(1);
+
     SysTick->CTRL = 0;
     SysTick->LOAD = 0;
     SysTick->VAL = 0;
@@ -40,10 +44,6 @@ int main(void)
         NVIC->ICER[i]=0xFFFFFFFF;
         NVIC->ICPR[i]=0xFFFFFFFF;
     }
-
-    __set_CONTROL(0);
-    __disable_irq();
-    __set_PRIMASK(1);
 
     HAL_GPIO_DeInit(GPIOE, GPIO_PIN_3);
 
